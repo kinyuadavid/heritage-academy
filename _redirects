@@ -1,0 +1,14 @@
+# Netlify reads this file. Short addresses a parent might type or that we print on a flyer.
+/apply            /admissions.html#apply   301
+/fees             /admissions.html#fees    301
+/admission        /admissions.html         301
+/admissions       /admissions.html         301
+/academics        /academics.html          301
+/life             /life.html               301
+/school-life      /life.html               301
+/news             /news.html               301
+/contact          /contact.html            301
+/privacy          /privacy.html            301
+
+# Anything else that does not exist shows our own page, not Netlify's.
+/*                /404.html                404
