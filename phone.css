@@ -1,0 +1,104 @@
+/* phone.css - what changes on smaller screens. Loaded last so it wins. */
+
+@media (max-width: 1080px) {
+  .foot-grid { grid-template-columns: 1fr 1fr; }
+  .paths { grid-template-columns: 1fr; }
+  .fig-card { grid-template-columns: 1fr 1fr; }
+  .fig:nth-child(2) { border-right: 0; }
+  .fig:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+  .hero-note { display: none; }
+}
+
+@media (max-width: 860px) {
+  .burger { display: block; }
+  .site-head .wrap { padding-block: 10px; }
+  .site-head.stuck .mark { transform: scale(.94); }
+
+  /* the panel that slides in from the right when the burger is tapped */
+  .nav {
+    position: fixed; inset: 0; z-index: 90;
+    display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 0;
+    background: var(--navy-deep);
+    padding: 86px var(--gutter) 40px;
+    overflow-y: auto;
+    transform: translateX(100%);
+    visibility: hidden;
+    transition: transform .42s cubic-bezier(.2, .8, .3, 1), visibility .42s;
+  }
+  .nav.open { transform: none; visibility: visible; }
+  /* the crest stays above the panel, so the school's name is still there while it is open */
+  .mark { position: relative; z-index: 95; }
+  .nav-ink { display: none; }
+
+  .nav > * { flex: none; }
+  .nav > a, .nav .drop { opacity: 0; transform: translateX(26px); }
+  .nav.open > a, .nav.open .drop { animation: panelIn .5s cubic-bezier(.2, .8, .3, 1) forwards; }
+  .nav.open > *:nth-child(1) { animation-delay: .08s; }
+  .nav.open > *:nth-child(2) { animation-delay: .13s; }
+  .nav.open > *:nth-child(3) { animation-delay: .18s; }
+  .nav.open > *:nth-child(4) { animation-delay: .23s; }
+  .nav.open > *:nth-child(5) { animation-delay: .28s; }
+  .nav.open > *:nth-child(6) { animation-delay: .33s; }
+  .nav.open > *:nth-child(7) { animation-delay: .38s; }
+  @keyframes panelIn { to { opacity: 1; transform: none; } }
+
+  .nav > a, .nav .drop > a {
+    padding: 15px 2px; border-radius: 0; font-size: 15px; letter-spacing: .12em;
+    border-bottom: 1px solid var(--line-dark); justify-content: space-between;
+  }
+  .nav .drop { display: block; }
+  .nav .drop > a { display: flex; }
+  .nav a.here::after { left: auto; right: 2px; bottom: 50%; transform: translateY(50%); }
+  .nav .btn.head-cta { display: inline-flex; margin: 22px 0 0; border-bottom: 0; justify-content: center; }
+
+  /* the sub-menu opens downwards inside the panel instead of hovering */
+  .sub {
+    display: block; /* a span is inline by default, and max-height would be ignored */
+    position: static; transform: none; opacity: 1; visibility: visible;
+    min-width: 0; padding-top: 0; max-height: 0; overflow: hidden;
+    transition: max-height .4s cubic-bezier(.2, .8, .3, 1);
+  }
+  /* the hover rules in header.css slide the panel sideways; inside the phone menu
+     it must stay where it is and simply open downwards */
+  .drop .sub, .drop:hover .sub, .drop.open .sub, .drop:focus-within .sub { transform: none; }
+  .drop.open .sub, .drop.open:hover .sub { max-height: 430px; }
+  .drop:hover .sub { max-height: 0; }
+  .sub-in { background: transparent; border-top: 0; box-shadow: none; padding: 4px 0 10px 14px; }
+  .sub-in a { color: rgba(255, 255, 255, .84); font-size: 14.5px; padding: 9px 10px; }
+  .sub-in a span { color: rgba(255, 255, 255, .5); }
+  .sub-in a:hover { background: rgba(255, 255, 255, .08); color: var(--white); padding-left: 16px; }
+
+  body.locked { overflow: hidden; }
+
+  .split, .results-grid, .visit-grid { grid-template-columns: 1fr; }
+  .results-grid .bars { height: 220px; }
+  .photo-stamp { left: 14px; }
+  .topstrip .hide-phone { display: none; }
+}
+
+@media (max-width: 560px) {
+  body { font-size: 16px; }
+  .fig-card { grid-template-columns: 1fr; }
+  .fig { border-right: 0; border-bottom: 1px solid var(--line); padding: 24px 26px; }
+  .fig:last-child { border-bottom: 0; }
+  .foot-grid { grid-template-columns: 1fr; gap: 30px; }
+  .hero { min-height: 86vh; }
+  .btn { width: 100%; }
+  .hero-cta .btn { width: auto; flex: 1 1 100%; }
+  .opens li { grid-template-columns: 64px 1fr; gap: 14px; }
+  .day-head { align-items: flex-start; }
+}
+
+/* The stage tabs become one swipeable row on a phone instead of a tall stack. */
+@media (max-width: 640px) {
+  .tabs {
+    flex-wrap: nowrap; overflow-x: auto; padding-bottom: 10px; margin-top: 26px;
+    scroll-snap-type: x mandatory; scrollbar-width: none;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab-pill { flex: 0 0 auto; scroll-snap-align: start; font-size: 12px; padding: 11px 16px; }
+  .level { padding: 22px 20px; }
+  .voice { padding-left: 18px; }
+  .voice p { font-size: 1.15rem; }
+  .dots { padding-left: 21px; }
+}

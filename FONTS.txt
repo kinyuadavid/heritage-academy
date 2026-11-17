@@ -1,0 +1,3 @@
+Playfair Display (headings), Raleway (small labels and buttons) and Inter (text) are open fonts
+under the SIL Open Font License 1.1 (scripts.sil.org/OFL), from Google Fonts.
+The files are Latin-only variable fonts in WOFF2, kept as downloaded.

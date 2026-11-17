@@ -1,0 +1,85 @@
+/* parts.css - the pieces that move: the stage tabs, the parent voices,
+   the photo viewer, the progress bar, the phone action bar and the back-to-top button. */
+
+/* ------------------------------------------------------------------ stage tabs */
+.tabs { display: flex; flex-wrap: wrap; gap: 10px; margin: 26px 0 22px; }
+.tab-pill {
+  font-family: var(--label); font-size: 13px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
+  padding: 12px 20px; border-radius: 999px; cursor: pointer;
+  background: var(--white); color: var(--navy); border: 2px solid var(--line);
+  transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
+}
+.tab-pill:hover { border-color: var(--sun); transform: translateY(-2px); }
+.tab-pill.on { background: var(--navy); color: var(--white); border-color: var(--navy); }
+.band.dark .tab-pill, .band.deep .tab-pill { background: transparent; color: rgba(255, 255, 255, .86); border-color: var(--line-dark); }
+.band.dark .tab-pill.on, .band.deep .tab-pill.on { background: var(--sun); color: #2B1E00; border-color: var(--sun); }
+
+.level { background: var(--white); border: 1px solid var(--line); border-left: 5px solid var(--sun); border-radius: var(--r-lg); padding: clamp(24px, 3.4vw, 38px); box-shadow: var(--shadow-sm); }
+.level-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.level-head h3 { margin: 0; color: var(--navy); }
+.level-grades { font-family: var(--label); font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--sun-ink); }
+.level-line { font-family: var(--display); font-size: clamp(1.1rem, 2vw, 1.45rem); font-style: italic; color: var(--ink); margin: 10px 0 18px; }
+.level .tick { margin: 0; grid-template-columns: 1fr 1fr; display: grid; gap: 12px 28px; }
+.level-next { margin: 22px 0 0; padding-top: 16px; border-top: 1px solid var(--line); color: var(--ink-2); font-size: 15px; }
+.level-next b { color: var(--ink); }
+@media (max-width: 760px) { .level .tick { grid-template-columns: 1fr; } }
+
+.swap-in { animation: swapIn .45s cubic-bezier(.2, .8, .3, 1); }
+@keyframes swapIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+/* ------------------------------------------------------------------ parent voices */
+.voice { margin: 0; border-left: 3px solid var(--sun); padding-left: 24px; min-height: 180px; }
+.voice p { font-family: var(--display); font-size: clamp(1.25rem, 2.2vw, 1.8rem); font-style: italic; line-height: 1.38; margin: 0 0 16px; }
+.voice cite { font-family: var(--label); font-size: 13px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; font-style: normal; color: var(--navy); }
+.voice cite span { display: block; font-weight: 600; letter-spacing: .06em; color: var(--sun-ink); margin-top: 4px; }
+.dots { display: flex; gap: 10px; margin-top: 22px; padding-left: 27px; }
+.dot { width: 11px; height: 11px; border-radius: 50%; border: 0; padding: 0; cursor: pointer; background: var(--line); transition: transform .2s ease, background .2s ease; }
+.dot:hover { transform: scale(1.25); }
+.dot.on { background: var(--sun); transform: scale(1.25); }
+
+/* ------------------------------------------------------------------ photo viewer */
+.zoomable { cursor: zoom-in; }
+.viewer {
+  position: fixed; inset: 0; z-index: 200; display: none;
+  align-items: center; justify-content: center; gap: clamp(8px, 2vw, 28px);
+  background: rgba(8, 14, 28, .93); padding: clamp(14px, 4vw, 48px);
+}
+.viewer.on { display: flex; animation: swapIn .3s ease; }
+.viewer figure { margin: 0; max-width: min(1100px, 100%); }
+.viewer img { max-height: 78vh; width: auto; border-radius: var(--r-md); box-shadow: 0 30px 80px rgba(0, 0, 0, .5); }
+.viewer figcaption { color: rgba(255, 255, 255, .78); font-size: 14.5px; text-align: center; margin-top: 14px; }
+.viewer-step, .viewer-shut {
+  background: rgba(255, 255, 255, .1); color: var(--white); border: 1px solid rgba(255, 255, 255, .25);
+  width: 52px; height: 52px; border-radius: 50%; font-size: 28px; line-height: 1; cursor: pointer; flex: none;
+  transition: background .2s ease;
+}
+.viewer-step:hover, .viewer-shut:hover { background: rgba(255, 255, 255, .22); }
+.viewer-shut { position: absolute; top: clamp(14px, 3vw, 28px); right: clamp(14px, 3vw, 28px); font-size: 24px; }
+
+/* ------------------------------------------------------------------ progress bar */
+.progress { position: fixed; top: 0; left: 0; right: 0; height: 3px; z-index: 120; background: transparent; pointer-events: none; }
+.progress span { display: block; height: 100%; width: 0; background: var(--sun); transition: width .08s linear; }
+
+/* ------------------------------------------------------------------ phone action bar */
+.phone-bar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 110; display: none; gap: 10px;
+  padding: 12px 14px calc(12px + env(safe-area-inset-bottom, 0px));
+  background: rgba(16, 27, 49, .96); box-shadow: 0 -10px 30px rgba(8, 14, 28, .3);
+  transform: translateY(110%); transition: transform .3s ease;
+}
+.phone-bar .btn { flex: 1; padding: 13px 10px; font-size: 12px; }
+.phone-bar.up { transform: none; }
+@media (max-width: 760px) { .phone-bar { display: flex; } body { padding-bottom: 0; } }
+
+/* ------------------------------------------------------------------ back to top */
+.to-top {
+  position: fixed; right: 20px; bottom: 20px; z-index: 105;
+  width: 48px; height: 48px; border-radius: 50%; border: 0; cursor: pointer;
+  background: var(--navy); color: var(--white); font-size: 20px; line-height: 1;
+  box-shadow: var(--shadow); opacity: 0; transform: translateY(14px); pointer-events: none;
+  transition: opacity .25s ease, transform .25s ease, background .2s ease;
+}
+.to-top.up { opacity: 1; transform: none; pointer-events: auto; }
+.to-top:hover { background: var(--navy-mid); }
+@media (max-width: 760px) { .to-top { bottom: 88px; right: 14px; width: 42px; height: 42px; } }
+@media (prefers-reduced-motion: reduce) { .swap-in { animation: none; } }

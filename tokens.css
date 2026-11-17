@@ -1,0 +1,39 @@
+/* Colours, fonts and spacing for the whole site. Change the look here.
+   Deep indigo and warm sun-amber, on a soft ivory page. The school's own green stays
+   in the photographs; the page is built around them rather than copying them.
+   Fonts: Playfair Display (headings), Raleway (small capital labels and buttons), Inter (text).
+   All three are open fonts (SIL Open Font License) and are kept in assets/fonts. */
+
+@font-face { font-family: "Playfair Display"; src: url("../assets/fonts/PlayfairDisplay-Variable.woff2") format("woff2"); font-weight: 400 900; font-style: normal; font-display: swap; }
+@font-face { font-family: "Playfair Display"; src: url("../assets/fonts/PlayfairDisplay-Italic-Variable.woff2") format("woff2"); font-weight: 400 900; font-style: italic; font-display: swap; }
+@font-face { font-family: "Raleway"; src: url("../assets/fonts/Raleway-Variable.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("../assets/fonts/Inter-Variable.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+
+:root {
+  --navy: #1B2A4A;        /* deep indigo: headers, dark bands, footer */
+  --navy-deep: #101B31;   /* darker still, for the thin strip and shadows */
+  --navy-mid: #2C3F66;    /* cards on dark, hover states */
+  --sky-soft: #E6EAF3;    /* pale indigo bands on light */
+  --sun: #E8A33A;         /* warm amber, from the crest: buttons, rules, numerals */
+  --sun-light: #F5C268;   /* hover */
+  --sun-ink: #6E4708;     /* amber text on ivory, dark enough to read */
+  --cream: #F6F2E9;        /* soft ivory: page background */
+  --cream-2: #FCFAF4;      /* cards on cream */
+  --white: #FFFFFF;
+  --ink: #141B28;          /* main text */
+  --ink-2: #4B5667;        /* second-line text on cream */
+  --line: #D9D3C4;         /* hairlines on cream */
+  --line-dark: rgba(255, 255, 255, .18);
+
+  --display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --label: "Raleway", "Segoe UI", system-ui, sans-serif;
+  --text: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --r-sm: 4px;
+  --r-md: 10px;
+  --r-lg: 20px;
+  --wrap: 1200px;
+  --gutter: clamp(18px, 4vw, 40px);
+  --shadow: 0 18px 50px rgba(16, 27, 49, .16);
+  --shadow-sm: 0 6px 18px rgba(16, 27, 49, .10);
+}
